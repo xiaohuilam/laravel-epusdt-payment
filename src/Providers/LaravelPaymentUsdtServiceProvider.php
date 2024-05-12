@@ -9,10 +9,10 @@ class LaravelPaymentUsdtServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config.php', 'epusdt');
+
         $this->app->singleton('epusdt', function () {
             return new Epusdt(config('epusdt.url'), config('epusdt.token'));
         });
-
-        $this->mergeConfigFrom(__DIR__ . '/../config.php', 'epusdt');
     }
 }
