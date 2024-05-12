@@ -1,5 +1,5 @@
 {
-    "name": "xiaohuilam/laravel-payment-usdt",
+    "name": "xiaohuilam/laravel-epusdt-payment",
     "description": "Laravel 对接 EPUSDT 支付",
     "type": "library",
     "require": {
