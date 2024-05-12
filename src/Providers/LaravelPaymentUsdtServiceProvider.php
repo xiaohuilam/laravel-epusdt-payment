@@ -9,7 +9,7 @@ class LaravelPaymentUsdtServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->register('epusdt', function () {
+        $this->app->singleton('epusdt', function () {
             return new Epusdt(config('epusdt.url'), config('epusdt.token'));
         });
 
