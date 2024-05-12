@@ -1,6 +1,6 @@
 <?php
 
-namespace Xiaohuilam\LaravelPaymentUsdt;
+namespace Xiaohuilam\LaravelEpusdtPayment;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;

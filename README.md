@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-composer require "xiaohuilam/laravel-payment-usdt" -vvv
+composer require "xiaohuilam/laravel-epusdt-payment" -vvv
 ```
 
 ## 配置

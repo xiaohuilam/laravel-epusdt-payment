@@ -1,11 +1,11 @@
 <?php
 
-namespace Xiaohuilam\LaravelPaymentUsdt\Providers;
+namespace Xiaohuilam\LaravelEpusdtPayment\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Xiaohuilam\LaravelPaymentUsdt\Epusdt;
+use Xiaohuilam\LaravelEpusdtPayment\Epusdt;
 
-class LaravelPaymentUsdtServiceProvider extends ServiceProvider
+class LaravelEpusdtPaymentServiceProvider extends ServiceProvider
 {
     public function register()
     {

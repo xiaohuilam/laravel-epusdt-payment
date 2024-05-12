@@ -9,7 +9,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Xiaohuilam\\LaravelPaymentUsdt\\": "src/"
+            "Xiaohuilam\\LaravelEpusdtPayment\\": "src/"
         }
     },
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Xiaohuilam\\LaravelPaymentUsdt\\Providers\\LaravelPaymentUsdtServiceProvider"
+                "Xiaohuilam\\LaravelEpusdtPayment\\Providers\\LaravelEpusdtPaymentServiceProvider"
             ]
         }
     }
