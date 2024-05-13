@@ -1,6 +1,6 @@
 # Laravel 对接 EPUSDT 支付
 
-* 本人不提供免费/收费的 EPUSDT 的技术支持，本仓库 Issues 只接受代码 BUG 问题。 EPUSDT的问题请提交给原作者仓库 [assimon/epusdt](https://github.com/assimon/epusdt)
+本人不提供免费/收费的 EPUSDT 的技术支持，本仓库 Issues 只接受代码 BUG 问题。 EPUSDT的问题请提交给原作者仓库 [assimon/epusdt](https://github.com/assimon/epusdt)
 
 ## 安装
 
