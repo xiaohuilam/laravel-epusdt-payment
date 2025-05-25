@@ -17,6 +17,11 @@ class Epusdt
         $this->signKey = $signKey;
     }
 
+    protected function http()
+    {
+        return Http::asJson();
+    }
+
     protected function sign(array $parameter, string $signKey)
     {
         ksort($parameter);
@@ -41,7 +46,7 @@ class Epusdt
     protected function makeCall($url, $parameter)
     {
         $parameter['signature'] = $this->sign($parameter, $this->signKey);   
-        $res = Http::asJson()->post($this->baseUrl . $url, $parameter)->object();
+        $res = $this->http()->post($this->baseUrl . $url, $parameter)->object();
 
         if (200 !== $res->status_code) {
             throw new \Exception($res->message);
