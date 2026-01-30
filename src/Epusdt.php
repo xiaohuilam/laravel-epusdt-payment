@@ -17,6 +17,11 @@ class Epusdt
         $this->signKey = $signKey;
     }
 
+    protected function http()
+    {
+        return Http::asJson();
+    }
+
     protected function sign(array $parameter, string $signKey)
     {
         ksort($parameter);
@@ -40,8 +45,8 @@ class Epusdt
 
     protected function makeCall($url, $parameter)
     {
-        $parameter['signature'] = $this->sign($parameter, $this->signKey);   
-        $res = Http::asJson()->post($this->baseUrl . $url, $parameter)->object();
+        $parameter['signature'] = $this->sign($parameter, $this->signKey);
+        $res = $this->http()->post($this->baseUrl . $url, $parameter)->object();
 
         if (200 !== $res->status_code) {
             throw new \Exception($res->message);
@@ -52,17 +57,21 @@ class Epusdt
     /**
      * 创建支付订单
      * @param string $orderNumber 订单号
-     * @param float $cnyAmount 付款金额（人民币）
+     * @param float $amount 付款金额
      * @param string $notifyUrl 回调地址
+     * @param string|null $currency 币种
      */
-    public function createTransaction($orderNumber, $cnyAmount, $notifyUrl)
+    public function createTransaction($orderNumber, $amount, $notifyUrl, $currency = null)
     {
         $parameter = [
             "order_id" => $orderNumber,
-            "amount" => (float) $cnyAmount,
+            "amount" => (float) $amount,
             "notify_url" => $notifyUrl,
             "redirect_url" => $notifyUrl,
         ];
+        if ($currency) {
+            $parameter['currency'] = $currency;
+        }
         return $this->makeCall('/api/v1/order/create-transaction', $parameter);
     }
 
