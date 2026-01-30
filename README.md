@@ -22,7 +22,7 @@ EPUSDT_TOKEN=   #接口APIKEY
 <?php
 
 $notifyUrl = 'https://xxx.com/notify';
-$res = app('epusdt')->createTransaction(
+$respEpusdt = app('epusdt')->createTransaction(
     '123', # 订单号
     number_format($pay_amount, 2, '.', ''),
     $notifyUrl
