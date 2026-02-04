@@ -18,6 +18,8 @@ EPUSDT_TOKEN=   #接口APIKEY
 ```
 
 ## 使用
+
+[原版 assimon/epusdt](https://github.com/assimon/epusdt) 调用
 ```php
 <?php
 
@@ -26,6 +28,23 @@ $respEpusdt = app('epusdt')->createTransaction(
     '123', # 订单号
     number_format($pay_amount, 2, '.', ''),
     $notifyUrl
+);
+
+$address = $respEpusdt->token; # 需要支付给的地址
+$usdtAmount = $respEpusdt->actual_amount; # 需要支付金额
+```
+
+[CF Workers 移植版 xiaohuilam/epusdt-workers](https://github.com/xiaohuilam/epusdt-workers) 调用
+```php
+<?php
+
+$notifyUrl = 'https://xxx.com/notify';
+$currency = 'CNY'; // CNY 或 USD, USD 不转换汇率
+$respEpusdt = app('epusdt')->createTransaction(
+    '123', # 订单号
+    number_format($pay_amount, 2, '.', ''),
+    $notifyUrl,
+    $currency // 原版 https://github.com/assimon/epusdt 不支持此参数，仅 CF Workers 移植版 https://github.com/xiaohuilam/epusdt-workers 支持
 );
 
 $address = $respEpusdt->token; # 需要支付给的地址
@@ -53,7 +72,8 @@ class YourController extends Controller
             // 更多回调参数请见 @see https://github.com/assimon/epusdt/blob/master/wiki/API.md#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0-1
             $txid = $request->input('block_transaction_id'); # 交易号
             $address = $request->input('token'); # 收款地址
-            $cnyAmount = $request->input('amount'); # 收款金额，CNY
+            $cnyAmount = $request->input('amount'); # 收款金额
+            $currency = $request->input('currency'); # 收款币种, 只有 CF Workers 移植版 才会请求此参数
             $usdtAmount = $request->input('actual_amount'); # 实付金额，USDT
         });
     }
